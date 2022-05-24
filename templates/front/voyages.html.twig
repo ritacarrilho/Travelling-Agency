@@ -1,0 +1,36 @@
+{%extends "base.html.twig" %} 
+{% block title %}Page Name{% endblock %}
+
+{% block body %}
+
+    <div>
+        {{ include("front/template_part/_menu.html.twig", {pp: 'home'} )}}
+    </div>
+<div class="container">
+    <h2>Voyages</h2>
+    <div class="container row">
+       <div class="col-sm-9"> 
+            <p>
+               Here you can find the best voyages in the world!
+            </p>
+       </div>
+        <div class="d-flex flex-row justify-content-start">
+            {% for voyage in voyages %}
+                <div class="card mb-2 me-3">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            {{ voyage['title'] }}
+                        </h4>
+                        <h6 class="card-text">
+                            {{ voyage['country'] }}
+                        </h6>
+                        <p class="card-text">
+                            {{ voyage['description'] }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}

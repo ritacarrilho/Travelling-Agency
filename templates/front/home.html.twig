@@ -1,0 +1,19 @@
+{%extends "base.html.twig" %} 
+{% block title %}Page Name{% endblock %}
+
+{% block body %}
+    <div>
+        {{ include("front/template_part/_menu.html.twig", {pp: 'home'} )}}
+    </div>
+
+    <div class="container">
+    <h2>The best Travelling Agency in the world !</h2>
+
+       <div class="col-sm-9"> 
+            <p>
+                Hello! Welcome to the best travelling website
+            </p>
+       </div>
+
+    </div>
+{% endblock %}
