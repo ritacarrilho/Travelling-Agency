@@ -1,0 +1,17 @@
+ <div class="d-flex flex-row justify-content-start">
+    {% for voyage in voyages %}
+        <div class="card mb-2 me-3">
+            <div class="card-body">
+                <h4 class="card-title">
+                    {{ voyage['title'] }}
+                </h4>
+                <h6 class="card-text">
+                    {{ voyage['country'] }}
+                </h6>
+                <p class="card-text">
+                    {{ voyage['description'] }}
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
