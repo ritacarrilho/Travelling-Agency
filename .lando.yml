@@ -9,4 +9,4 @@ services:
     creds: 
       user: rita
       password: admin
-      database: books 
+      database: voyages 
