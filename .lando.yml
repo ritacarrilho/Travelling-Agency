@@ -8,5 +8,5 @@ services:
     portforward: 3307
     creds: 
       user: rita
-      password: admin
+      password: root
       database: voyages 
