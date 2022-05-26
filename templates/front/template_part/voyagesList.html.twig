@@ -1,15 +1,18 @@
- <div class="d-flex flex-row justify-content-start">
+ <div class="row justify-content-md">
     {% for voyage in voyages %}
-        <div class="card mb-2 me-3">
+        <div class="card col-3 m-2">
             <div class="card-body">
                 <h4 class="card-title">
-                    {{ voyage['title'] }}
+                    {{ voyage.name }}
                 </h4>
                 <h6 class="card-text">
-                    {{ voyage['country'] }}
+                    {{ voyage.destiny }}
                 </h6>
                 <p class="card-text">
-                    {{ voyage['description'] }}
+                    {{ voyage.price }} €
+                </p>
+                <p class="card-text">
+                    {{ voyage.description }}
                 </p>
             </div>
         </div>

@@ -90,3 +90,4 @@ class Voyages
         return $this;
     }
 }
+ 

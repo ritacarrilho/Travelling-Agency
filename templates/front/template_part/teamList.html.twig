@@ -1,37 +1,18 @@
- <h4>Meet our secretaires !</h4>
-<div class="d-flex flex-row justify-content-start">
-    {% for secretaire in secretaires %}
-        <div class="card mb-2 me-3">
+<div class="row justify-content-md">
+    {% for employee in employees %}
+        <div class="card col-2 m-2">
             <div class="card-body">
-                <h4 class="card-title">
-                    {{ secretaire['name'] }}
-                </h4>
+                <h5 class="card-title">
+                   Name : {{ employee.name }}
+                </h5>
                 <h6 class="card-text">
-                    {{ secretaire['age'] }}
+                   Age : {{ employee.age }}
                 </h6>
                 <p class="card-text">
-                    {{ secretaire['job'] }}
+                   Job : {{ employee.job }}
                 </p>
             </div>
         </div>
     {% endfor %}
 </div>
-
-<h4>Meet our commercials !</h4>
-<div class="d-flex flex-row justify-content-start">
-    {% for commercial in commercials %}
-        <div class="card mb-2 me-3">
-            <div class="card-body">
-                <h4 class="card-title">
-                    {{ commercial['name'] }}
-                </h4>
-                <h6 class="card-text">
-                    {{ commercial['age'] }}
-                </h6>
-                <p class="card-text">
-                    {{ commercial['job'] }}
-                </p>
-            </div>
-        </div>
-    {% endfor %}
 </div>
