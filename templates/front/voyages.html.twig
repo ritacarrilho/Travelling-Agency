@@ -6,12 +6,8 @@
     <div>
         {{ include("front/template_part/_menu.html.twig", {pp: 'menu'} )}}
     </div>
-<div class="container">
-    <h2>Voyages</h2>
-
-   <div class="col-sm-9"> 
-        <p>Here you can find the best voyages in the world!</p>
-    </div>
+<div class="container mt-3">
+    <h2 class="text-center">Voyages</h2>
        
     {{ include("front/template_part/voyagesList.html.twig", {pp: 'voyages'} )}}
 </div>

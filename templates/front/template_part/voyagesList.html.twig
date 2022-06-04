@@ -1,6 +1,8 @@
- <div class="row justify-content-md">
+ <div class="container justify-content-md">
+ <div class="row justify-content-center">
     {% for voyage in voyages %}
-        <div class="card col-3 m-2">
+        <div class="card col-3 m-1">
+        <img class="card-img-top rounded mt-2" src="images/backpack.jpg" alt="Card image cap">
             <div class="card-body">
                 <h4 class="card-title">
                     {{ voyage.name }}
@@ -17,4 +19,5 @@
             </div>
         </div>
     {% endfor %}
+</div>
 </div>

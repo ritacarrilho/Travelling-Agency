@@ -1,15 +1,18 @@
-<div class="row justify-content-md">
+<div class="container justify-content-md">
+ <div class="row justify-content-center">
     {% for employee in employees %}
-        <div class="card col-2 m-2">
-            <div class="card-body">
+        <div class="card col-2 m-2 bg-image" style="background-image: url(images/hiker.jpg);  
+                background-size: cover;
+                background-position: center;">
+            <div class="card-body text-white">
                 <h5 class="card-title">
-                   Name : {{ employee.name }}
+                   <strong>Name : </strong> {{ employee.name }}
                 </h5>
                 <h6 class="card-text">
-                   Age : {{ employee.age }}
+                   <strong>Age : </strong>{{ employee.age }}
                 </h6>
                 <p class="card-text">
-                   Job : {{ employee.job }}
+                   <strong>Job : </strong>{{ employee.job }}
                 </p>
             </div>
         </div>
