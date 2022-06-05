@@ -89,4 +89,10 @@ class Articles
 
         return $this;
     }
+
+    public function getPublishDateFormat() 
+    {
+        return $this->getPublishDate()->format('l, d F Y');
+    }
+
 }

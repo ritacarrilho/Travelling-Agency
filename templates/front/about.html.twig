@@ -7,25 +7,25 @@
     {{ include("front/template_part/_menu.html.twig", {pp: 'about'} )}}
 </div>
 <div class="container mt-3">
-    <h2>About Us</h2>
+    <h2 style="color: #11663f;">About Us</h2>
     <div class="col-sm-9"> 
         <p>Here you can discover and learn all about our travelling agency !</p>
     </div>
     <div class=""> 
-    <h3>Find out more about our Nature Voyages<h5>
+    <h3 style="color: #11663f">Find out more about our Nature Voyages<h3>
         {% for article in articles %}
         <pre>
-            {{ dump(article) }}
+            {# {{ dump(article) }} #}
         </pre>
-        <div class="card">
+        <div class="card br-5">
             <h4 class="card-header">{{ article.label}}</h4>
             <div class="card-body">
                 <h6 class="card-title">{{ article.author}}</h6>
                 <p class="">{{ article.description}}</p>
-                {# <p class="card-text">{{ article.getPublishDate}}</p>  #}
+                <p class="">{{ article.getPublishDateFormat}}</p>
             </div>
         </div>
-        {% endfor %}
+        {% endfor %} 
     </div>
 </div>
     

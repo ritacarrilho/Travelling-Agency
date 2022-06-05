@@ -22,12 +22,15 @@ class AppFixtures extends Fixture
 
         $images = ['adventure.jpg', 'dolomites.jpg', 'explore.jpg', 'montenegro.jpg', 'mountain.jpg', 'people.jpg'];
 
+        $pictures = ['attractive.jpg', 'fashion.jpg', 'man.jpg', 'portrait-gf.jpg', 'woman-g1.jpg', 'woman-g8.jpg', 'woman-g87.jpg', 'woman-ga.jpg', 'woman.jpg'];
+        
         // generate 9 employees
         for($i=0; $i < 9; $i++) {
             $employee = new Team();
             $employee->setName($faker->name)
                     ->setAge(rand(18, 65))
-                    ->setJob($jobs[rand(0, count($jobs) -1)]);
+                    ->setJob($jobs[rand(0, count($jobs) -1)])
+                    ->setPicture($pictures[$i]);
 
             $manager->persist($employee); // each time it generates an object, keep it in memory in a generic array
         }

@@ -1,19 +1,15 @@
 <div class="container justify-content-md">
  <div class="row justify-content-evenly">
     {% for employee in employees %}
-        <div class="card col-2 m-2 bg-image" style="background-image: url(images/hiker.jpg);  
+        <div class="card col-2 m-2 bg-image d-flex flex-row align-items-end" style="background-image: url(images/{{ employee.picture }});  
                 background-size: cover;
-                background-position: center;">
+                background-position: center;
+                filter: grayscale(90%);
+                height: 400px">
             <div class="card-body text-white">
-                <h5 class="card-title">
-                   <strong>Name : </strong> {{ employee.name }}
-                </h5>
-                <h6 class="card-text">
-                   <strong>Age : </strong>{{ employee.age }}
-                </h6>
-                <p class="card-text">
-                   <strong>Job : </strong>{{ employee.job }}
-                </p>
+                <h5 class="card-title">{{ employee.name }}</h5>
+                <h6 class="card-text">{{ employee.age }} years old</h6>
+                <p class="card-text">{{ employee.job }}</p>
             </div>
         </div>
     {% endfor %}

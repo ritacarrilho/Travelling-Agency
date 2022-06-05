@@ -32,6 +32,11 @@ class Team
      */
     private $job;
 
+        /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $picture;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,4 +77,15 @@ class Team
 
         return $this;
     }
-}
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }}
