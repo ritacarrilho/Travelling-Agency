@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Voyages;
+use App\Form\VoyagesType;
 use App\Repository\VoyagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +38,18 @@ class VoyagesController extends AbstractController
 
         return $this->render('front/voyages.html.twig', [
             'voyages' => $voyages
+        ]);
+    }
+
+    /**
+     * @Route("/addVoyage", name="add_voyages", methods={"GET", "POST"})
+     * @return void
+     */
+    public function addVoyage() {
+
+        $form = $this->createForm(VoyagesType::class);
+        return $this->render('front/voyages/editVoyages.html.twig', [
+            "form" => $form->createView()
         ]);
     }
 }

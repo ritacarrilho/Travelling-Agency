@@ -8,6 +8,9 @@
     </div>
 <div class="container mt-3">
     <h2 style="padding: 0 0 0 150px; color: #11663f;">Voyages</h2>
+    <span class="float-end" style="padding: 0 150px 0 0;">
+        <a href="{{ path("add_voyages") }}" class="btn btn-success btn-sm">Add</a>
+    </span>
        
     {{ include("front/template_part/voyagesList.html.twig", {pp: 'voyages'} )}}
 </div>

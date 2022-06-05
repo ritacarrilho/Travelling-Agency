@@ -15,7 +15,7 @@ class TeamController extends AbstractController
      */
     private $teamRepo; // tema repository accessible everywhere
 
-    public function __construct(TeamRepository $teamRepository) // injection
+    public function __construct(TeamRepository $teamRepository) // injection, allows to have access to repository all over the file
     { 
         $this->teamRepo = $teamRepository;
     }
