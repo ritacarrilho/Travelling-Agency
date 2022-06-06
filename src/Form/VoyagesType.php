@@ -13,7 +13,7 @@ class VoyagesType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => 
+                "label" => "Voyage Name"
             ])
             ->add('price')
             ->add('destiny')

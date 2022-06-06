@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Voyages;
 use App\Form\VoyagesType;
 use App\Repository\VoyagesRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class VoyagesController extends AbstractController
@@ -45,9 +47,22 @@ class VoyagesController extends AbstractController
      * @Route("/addVoyage", name="add_voyages", methods={"GET", "POST"})
      * @return void
      */
-    public function addVoyage() {
+    public function addVoyage(Request $request, ManagerRegistry $manager) { // objectManager allows to make persist() nad flush() -> save data into DB
+        $voyage = new Voyages();// instanciate of empty object
 
-        $form = $this->createForm(VoyagesType::class);
+        $form = $this->createForm(VoyagesType::class, $voyage); // form creation and association of empty object
+
+        $form->handleRequest($request); // method get or post to recover data from form
+        
+        if ($form->isSubmitted() && $form->isValid()) { // verify if the form was submited by get or post and if the fields where correctly filled
+            $em = $manager->getManager();
+            
+            $em->persist($voyage); // hydrate form data into the object
+            $em->flush(); // flush data into DB
+
+            return $this->redirectToRoute("app_voyages"); // redirection towards the voyages list
+        }
+
         return $this->render('front/voyages/editVoyages.html.twig', [
             "form" => $form->createView()
         ]);
