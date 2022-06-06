@@ -5,6 +5,7 @@ namespace App\Controller;
 // use App\Entity\Team;
 use App\Repository\TeamRepository;
 use App\Entity\Team;
+use App\Form\TeamType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,11 +56,13 @@ class TeamController extends AbstractController
     }
 
         /**
-     * @Route("/addVoyage", name="add_team", methods={"GET", "POST"})
+     * @Route("/addTeam/{id}", name="add_team", methods={"GET", "POST"}, requirements = {"id": "\d+"})
      * @return void
      */
-    public function addVoyage(Request $request, ManagerRegistry $manager) { // objectManager allows to make persist() nad flush() -> save data into DB
-        $employee = new Team();// instanciate of empty object
+    public function addVoyage(int $id = -1, Request $request, ManagerRegistry $manager) { // objectManager allows to make persist() nad flush() -> save data into DB
+        
+        
+        $employee = ($id > 0 ) ? ($this->teamRepo->find($id)) : (new Team());// instanciate of empty object
 
         $form = $this->createForm(TeamType::class, $employee); // form creation and association of empty object
 

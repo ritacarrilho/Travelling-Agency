@@ -44,11 +44,11 @@ class VoyagesController extends AbstractController
     }
 
     /**
-     * @Route("/addVoyage", name="add_voyages", methods={"GET", "POST"})
+     * @Route("/addVoyage/{id}", name="add_voyages", methods={"GET", "POST"}, requirements = {"id": "\d+"})
      * @return void
      */
-    public function addVoyage(Request $request, ManagerRegistry $manager) { // objectManager allows to make persist() nad flush() -> save data into DB
-        $voyage = new Voyages();// instanciate of empty object
+    public function addVoyage(int $id = -1, Request $request, ManagerRegistry $manager) { // objectManager allows to make persist() nad flush() -> save data into DB
+        $voyage = ($id > 0 ) ? ($this->voyagesRepo->find($id)) : new Voyages();// instanciate of empty object
 
         $form = $this->createForm(VoyagesType::class, $voyage); // form creation and association of empty object
 

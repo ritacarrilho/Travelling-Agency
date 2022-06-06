@@ -18,6 +18,16 @@
                     {{ voyage.description }}
                 </p>
             </div>
+            <span class="float-end d-flex flex-row justify-content-between mb-2"> 
+                {# make a edit button for each author #}
+                <a href="{{ path("add_voyages", {id: voyage.id}) }}" 
+                    class="btn btn-outline-warning btn-sm"
+                    data-bs-toggle = "tooltip"
+                    data-bs-placement = "top"
+                    title="{{ voyage.name }}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+            </span>
         </div>
     {% endfor %}
 </div>
