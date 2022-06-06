@@ -67,4 +67,28 @@ class VoyagesController extends AbstractController
             "form" => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/delVoyage/{id}", name="app_deleteVoyage", methods={"POST"}, requirements = {"id": "\d+"})
+     * @param int $id
+     * @return void
+     */
+    public function deleteVoyage(int $id, Request $request,  ManagerRegistry $manager) 
+    {
+        if($this->isCsrfTokenValid('delete'.$id, $request->get('_token'))) {
+            $em = $manager->getManager();
+            
+            $voyage = $this->voyagesRepo->find($id);
+            $em->remove($voyage); // delete voyage according to his id
+            $em->flush(); // flush data into DB
+
+            $this->addFlash('success', 'The item was deleted with success!');
+
+            return $this->redirectToRoute("app_voyages"); 
+
+        } else {
+            return new Response('<h1>Bad Request');
+        }
+        return false;
+    }
 }

@@ -2,23 +2,20 @@
 {% block title %}Team{% endblock %}
 
 {% block body %}
-
-<div>        
-    {{ include("front/template_part/_menu.html.twig", {pp: 'team'} )}}
-</div>
-
-<div class="container mt-3">
-    <h2 style="color: #11663f">Meet our Team!</h2>
-    <span class="float-end" style="padding: 0 150px 0 0;">
-        <a href="{{ path("add_team") }}" class="btn btn-success btn-sm">Add</a>
-    </span>
-    <p>Here you can find our secretaries and commercials. </p>
-
-    {{ include("front/template_part/teamList.html.twig", {pp: 'team'} )}}
-      
+    <div>        
+        {{ include("front/template_part/_menu.html.twig", {pp: 'team'} )}}
     </div>
-</div>
-    {{ include("front/template_part/_footer.html.twig", {pp: 'team'} )}}
 
-    
+    <div class="container mt-3">
+        <h2 style="color: #11663f">Meet our Team!</h2>
+        <span class="float-end" style="padding: 0 150px 0 0;">
+            <a href="{{ path("add_team") }}" class="btn btn-success btn-sm">Add</a>
+        </span>
+        <p>Here you can find our secretaries and commercials. </p>
+
+        {{ include("front/template_part/teamList.html.twig", {pp: 'team'} )}}
+        
+        </div>
+    </div>
+    {{ include("front/template_part/_footer.html.twig", {pp: 'team'} )}}
 {% endblock %}

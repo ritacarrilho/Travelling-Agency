@@ -55,13 +55,12 @@ class TeamController extends AbstractController
         ]);
     }
 
-        /**
+    /**
      * @Route("/addTeam/{id}", name="add_team", methods={"GET", "POST"}, requirements = {"id": "\d+"})
      * @return void
      */
-    public function addVoyage(int $id = -1, Request $request, ManagerRegistry $manager) { // objectManager allows to make persist() nad flush() -> save data into DB
-        
-        
+    public function addVoyage(int $id = -1, Request $request, ManagerRegistry $manager) // objectManager allows to make persist() nad flush() -> save data into DB
+    { 
         $employee = ($id > 0 ) ? ($this->teamRepo->find($id)) : (new Team());// instanciate of empty object
 
         $form = $this->createForm(TeamType::class, $employee); // form creation and association of empty object
@@ -81,4 +80,29 @@ class TeamController extends AbstractController
             "form" => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/delTeam/{id}", name="app_deleteTeam", methods={"POST"}, requirements = {"id": "\d+"})
+     * @param int $id
+     * @return void
+     */
+    public function deleteTeam(int $id, Request $request, ManagerRegistry $manager) 
+    {
+        if($this->isCsrfTokenValid('delete'.$id, $request->get('_token'))) {
+            $em = $manager->getManager();
+            
+            $team = $this->teamRepo->find($id);
+            $em->remove($team); // delete voyage according to his id
+            $em->flush(); // flush data into DB
+
+            $this->addFlash('success', 'The item was deleted with success!');
+            return $this->redirectToRoute("app_team"); 
+
+        } else {
+            return new Response('<h1>Bad Request');
+        }
+        return false;
+    }
+
+
 }

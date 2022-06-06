@@ -1,4 +1,9 @@
  <div class="container justify-content-md">
+ {% for message in app.flashes('success') %}
+    <div class="row d-flex flex-row justify-content mb-2">
+        <div class="alert alert-success">{{ message }}</div>
+    </div>
+{% endfor %}
  <div class="row justify-content-center">
     {% for voyage in voyages %}
         <div class="card col-3 m-1">
@@ -19,7 +24,7 @@
                 </p>
             </div>
             <span class="float-end d-flex flex-row justify-content-between mb-2"> 
-                {# make a edit button for each author #}
+                {# make a edit button for each voyage #}
                 <a href="{{ path("add_voyages", {id: voyage.id}) }}" 
                     class="btn btn-outline-warning btn-sm"
                     data-bs-toggle = "tooltip"
@@ -27,6 +32,13 @@
                     title="{{ voyage.name }}">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
+
+                 {# make a delete button for each voyage #}
+                <form action="{{ path("app_deleteVoyage", {id: voyage.id}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this voyage?')" class="ms-2">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete'~voyage.id) }}">
+                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                </form>
+
             </span>
         </div>
     {% endfor %}
