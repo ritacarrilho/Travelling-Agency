@@ -4,8 +4,11 @@ namespace App\Controller;
 
 // use App\Entity\Team;
 use App\Repository\TeamRepository;
+use App\Entity\Team;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TeamController extends AbstractController
@@ -48,6 +51,31 @@ class TeamController extends AbstractController
 
         return $this->render('front/team.html.twig', [
             'employees' => $employees
+        ]);
+    }
+
+        /**
+     * @Route("/addVoyage", name="add_team", methods={"GET", "POST"})
+     * @return void
+     */
+    public function addVoyage(Request $request, ManagerRegistry $manager) { // objectManager allows to make persist() nad flush() -> save data into DB
+        $employee = new Team();// instanciate of empty object
+
+        $form = $this->createForm(TeamType::class, $employee); // form creation and association of empty object
+
+        $form->handleRequest($request); // method get or post to recover data from form
+        
+        if ($form->isSubmitted() && $form->isValid()) { // verify if the form was submited by get or post and if the fields where correctly filled
+            $em = $manager->getManager();
+            
+            $em->persist($employee); // hydrate form data into the object
+            $em->flush(); // flush data into DB
+
+            return $this->redirectToRoute("app_team"); // redirection towards the voyages list
+        }
+
+        return $this->render('front/team/editTeam.html.twig', [
+            "form" => $form->createView()
         ]);
     }
 }
